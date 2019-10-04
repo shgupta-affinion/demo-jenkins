@@ -24,6 +24,44 @@ task fatJar(type: Jar) {
     with jar
 }
 
+test {
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+        csv.enabled true
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
+
+
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

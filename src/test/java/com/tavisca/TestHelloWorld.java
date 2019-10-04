@@ -6,9 +6,14 @@ import org.junit.Test;
 public class TestHelloWorld {
 
     @Test
-    public void helloworld() {
-        HelloWorld helloWorld = new HelloWorld();
-        helloWorld.testMethod();
-        Assert.assertEquals(1, 1);
+    public void helloShouldReturnHelloWithName() {
+        Greet greet = new Greet();
+        Assert.assertEquals("must return hello with name", "Hello Pete", greet.hello("Pete"));
+    }
+
+    @Test
+    public void byeShouldReturnByeWithName() {
+        Greet greet = new Greet();
+        Assert.assertEquals("must return bye with name", "Bye Pete", greet.bye("Pete"));
     }
 }

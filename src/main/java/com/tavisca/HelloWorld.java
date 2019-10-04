@@ -1,7 +1,9 @@
 package com.tavisca;
 
 public class HelloWorld {
-    public void testMethod() {
-        System.out.println("Hello World");
+    public static void main(String[] args) {
+        Greet greet = new Greet();
+        System.out.println( greet.hello("Pete") );
+        System.out.println( greet.bye("Pete") );
     }
 }
